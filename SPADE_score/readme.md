@@ -14,6 +14,7 @@ Usage
 -----
 
 **SPADE-Score Evaluation Usage**
+
 Download SPADE.py file. In your Python code, using:
 1. `from SPADE import Spade`
 2. `TopEig, TopEdgeList, TopNodeList = Spade(data_input, data_output, data_labels, k, num_eigs)`(num_eigs>=2).
