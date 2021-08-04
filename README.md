@@ -1,7 +1,7 @@
 SPADE
 ===============================
 
-SPADE is a spectral method for black-box adversarial robustness evaluation. We propose model SPADE score, which is proved to be an upper bound of the best Lipschitz constant under the manifold setting, to capture non-robustness of ML models. Moreover, we further introduce node SPADE score to measure non-robustness of input samples, which is then used to guide applications such as adversarial training. More details are available in our paper: http://proceedings.mlr.press/v139/cheng21a.html
+SPADE is a spectral method for black-box adversarial robustness evaluation. We propose model SPADE score, which is proved to be an upper bound of the best Lipschitz constant under the manifold setting, to capture non-robustness of ML models. Moreover, we further introduce node SPADE score to measure non-robustness of input samples, which is then used to guide applications such as adversarial training and robustness evaluation. More details are available in our paper: http://proceedings.mlr.press/v139/cheng21a.html
 
 ![Overview of the SPADE](/SPADE.png)
 
