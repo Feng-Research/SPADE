@@ -114,7 +114,7 @@ def main():
         if args.method == "random":
             np.random.shuffle(idx)
         sub_idx = idx[args.topk:]
-        eps[idx] = args.small_epsilon
+        eps[sub_idx] = args.small_epsilon
         eps = torch.from_numpy(eps).float().cuda()
         epsilon_all = ((eps/255.).view(-1,1,1,1) / std.view(1,3,1,1))
 
