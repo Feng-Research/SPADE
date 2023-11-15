@@ -25,7 +25,7 @@ To evaluate the SPADE-Score, follow the steps outlined below:
 3. Use the Spade function with your data inputs and outputs:
 
     ```python
-    TopEig, TopEdgeList, TopNodeList, node_score, L_in, L_out, Dxy, Uxy = Spade(data_input, data_output)
+    TopEig, TopEdgeList, TopNodeList, node_score = Spade(data_input, data_output)
     ```
 
 4. The `data_input` and `data_output` parameters should be flattened. If your data is a multidimensional array, make sure to flatten it before use.
