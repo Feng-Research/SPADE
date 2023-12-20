@@ -7,34 +7,32 @@ from scipy.sparse import find, triu
 
 
 def hnsw(features, k=10, ef=100, M=48):
+    
     num_samples, dim = features.shape
-
     p = hnswlib.Index(space='l2', dim=dim)
     p.init_index(max_elements=num_samples, ef_construction=ef, M=M)
     labels_index = np.arange(num_samples)
     p.add_items(features, labels_index)
     p.set_ef(ef)
-
     neighs, weight = p.knn_query(features, k+1)
   
     return neighs, weight
 
-def spade(adj_in, data_output, k=10, num_eigs=2): 
+def spade(data_input, data_output, k=10, num_eigs=2, sparse=False): 
 
-    #G_in = nx.from_scipy_sparse_matrix(adj_in)
+    neighs, distance = hnsw(data_input, k)
+    adj_in, _, G_in = construct_adj(neighs, distance)
     neighs, distance = hnsw(data_output, k)
     adj_out, _, G_out = construct_adj(neighs, distance)
 
-    #assert nx.is_connected(G_in), "input graph is not connected"
-    #assert nx.is_connected(G_out), "output graph is not connected"
-
-    #adj_in = SPF(adj_in, 4)
+    if sparse:
+        adj_in = SPF(adj_in, 4)
+        adj_out = SPF(adj_out, 4)
+        
     L_in = laplacian(adj_in, normed=True)#.tocsr()#adj2laplacian(adj_in)
-
-    #adj_out = SPF(adj_out, 4)
     L_out = laplacian(adj_out, normed=True)#.tocsr()#adj2laplacian(adj_out)
-  
     TopEig, TopEdgeList, TopNodeList, node_score = GetRiemannianDist_nonetworkx(L_in, L_out, num_eigs)# full function
+    
     return TopEig, TopEdgeList, TopNodeList, node_score
 
 
