@@ -6,7 +6,6 @@ SPADE (Spectral Method for Black-Box Adversarial Robustness Evaluation) is a spe
 To use SPADE, the following dependencies are required:
 - `hnswlib`
 - `Julia`
-- `NetworkX`
 - `Pyjulia`
 
 ## Usage
@@ -27,10 +26,14 @@ To evaluate the SPADE-Score, follow the steps outlined below:
     ```python
     TopEig, TopEdgeList, TopNodeList, node_score = Spade(data_input, data_output)
     ```
+    `TopEig` This represents the model score, indicating the robustness of the model.
+    `TopEdgeList` A list of edges ranked from the least robust to the most robust edge.
+    `TopNodeList` A list of nodes ranked from the least robust to the most robust node.
+    `node_score` The SPADE score for each node, starting from node number 1 up to node number N, where N is the total number of nodes in `data_input`.
 
-4. The `data_input` and `data_output` parameters should be flattened. If your data is a multidimensional array, make sure to flatten it before use.
+5. The `data_input` and `data_output` parameters should be flattened. If your data is a multidimensional array, make sure to flatten it before use.
 
-5. The `Spade` function has the following default options:
+6. The `Spade` function has the following default options:
    - `k=10`: Specifies the kNN graph.
    - `num_eigs=2`: Determines the number of general eigenpairs.
    - `sparse=False`: Indicates whether to construct a sparse kNN graph.
